@@ -128,4 +128,32 @@ abstract class Styles {
     end: Alignment.bottomCenter,
     colors: [transparentColor, shadowColor],
   );
+
+  static const Color settingsMediumGray = Color(0xffc7c7c7);
+
+  static const Color settingsItemPressed = Color(0xffd9d9d9);
+
+  static const Color settingsLineation = Color(0xffbcbbc1);
+
+  static const Color settingsBackground = Color(0xffefeff4);
+
+  static const Color settingsGroupSubtitle = Color(0xff777777);
+
+  static const Color iconBlue = Color(0xff0000ff);
+
+  static const Color iconGold = Color(0xffdba800);
+
+  static const listIcon = IconData(
+    0xf454,
+    fontFamily: CupertinoIcons.iconFont,
+    fontPackage: CupertinoIcons.iconFontPackage,
+  );
+
+  static const reminderIcon = IconData(
+    0xf39b,
+    fontFamily: CupertinoIcons.iconFont,
+    fontPackage: CupertinoIcons.iconFontPackage,
+  );
+
+
 }

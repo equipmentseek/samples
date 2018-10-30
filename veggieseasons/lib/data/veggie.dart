@@ -5,22 +5,22 @@
 import 'package:meta/meta.dart';
 
 enum VeggieCategory {
-  legume,
-  tuber,
+  allium,
+  berry,
+  citrus,
   cruciferous,
+  fruit,
+  fungus,
   gourd,
   leafy,
-  berry,
-  stealthFruit,
-  tropical,
-  fruit,
+  legume,
   melon,
+  root,
+  stealthFruit,
   stoneFruit,
   fern,
-  citrus,
-  root,
-  allium,
-  fungus,
+  tropical,
+  tuber,
   vegetable,
 }
 
@@ -31,7 +31,7 @@ enum Season {
   autumn,
 }
 
-final Map<VeggieCategory, String> veggieCategoryNames = {
+const Map<VeggieCategory, String> veggieCategoryNames = {
   VeggieCategory.legume: 'Legume',
   VeggieCategory.tuber: 'Tuber',
   VeggieCategory.cruciferous: 'Cruciferous',
@@ -43,7 +43,7 @@ final Map<VeggieCategory, String> veggieCategoryNames = {
   VeggieCategory.fruit: 'Fruit',
   VeggieCategory.melon: 'Melon',
   VeggieCategory.stoneFruit: 'Stone fruit',
-  VeggieCategory.fern: 'Technically fern',
+  VeggieCategory.fern: 'Technically a fern',
   VeggieCategory.citrus: 'Citrus',
   VeggieCategory.root: 'Root vegetable',
   VeggieCategory.allium: 'Allium',
