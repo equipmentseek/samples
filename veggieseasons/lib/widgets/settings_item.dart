@@ -7,45 +7,33 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:veggieseasons/styles.dart';
 
-enum SettingsItemType {
-  // Just on and off.
-  toggle,
-  // Navigates to another page of detailed settings.
-  modal,
-}
-
 typedef FutureOr<void> PressOperationCallback();
 
 class SettingsItem extends StatefulWidget {
   const SettingsItem({
-    @required this.type,
     @required this.label,
+    this.child,
     this.subtitle,
     this.iconData,
     this.color,
     this.iconColor = const Color(0xFFFFFFFF),
-    this.value,
-    this.hasDetails = false,
     this.onPress,
   })  : assert(label != null),
-        assert(type != null);
+        assert(child != null || onPress != null);
 
   final String label;
   final String subtitle;
   final IconData iconData;
   final Color color;
   final Color iconColor;
-  final SettingsItemType type;
-  final String value;
-  final bool hasDetails;
   final PressOperationCallback onPress;
+  final Widget child;
 
   @override
   State<StatefulWidget> createState() => new SettingsItemState();
 }
 
 class SettingsItemState extends State<SettingsItem> {
-  bool switchValue = false;
   bool pressed = false;
 
   @override
@@ -112,61 +100,24 @@ class SettingsItemState extends State<SettingsItem> {
       ),
     );
 
-    switch (widget.type) {
-      case SettingsItemType.toggle:
-        rowChildren.add(
-          Padding(
-            padding: const EdgeInsets.only(right: 11.0),
-            child: CupertinoSwitch(
-              value: switchValue,
-              onChanged: (bool value) => setState(() => switchValue = value),
-            ),
+    if (widget.child != null) {
+      rowChildren.add(
+        Padding(
+          padding: const EdgeInsets.only(right: 11.0),
+          child: widget.child,
+        ),
+      );
+    } else {
+      rowChildren.add(
+        Padding(
+          padding: const EdgeInsets.fromLTRB(2.25, 0.5, 8.5, 0.0),
+          child: Icon(
+            CupertinoIcons.forward,
+            color: Styles.settingsMediumGray,
+            size: 21.0,
           ),
-        );
-        break;
-      case SettingsItemType.modal:
-        final List<Widget> rightRowChildren = [];
-        if (widget.value != null) {
-          rightRowChildren.add(
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 1.5,
-                right: 2.25,
-              ),
-              child: Text(
-                widget.value,
-                style: TextStyle(color: CupertinoColors.inactiveGray),
-              ),
-            ),
-          );
-        }
-
-        if (widget.hasDetails) {
-          rightRowChildren.add(
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 0.5,
-                left: 2.25,
-              ),
-              child: Icon(
-                CupertinoIcons.forward,
-                color: Styles.settingsMediumGray,
-                size: 21.0,
-              ),
-            ),
-          );
-        }
-
-        rightRowChildren.add(Padding(
-          padding: const EdgeInsets.only(right: 8.5),
-        ));
-
-        rowChildren.add(
-          Row(
-            children: rightRowChildren,
-          ),
-        );
-        break;
+        ),
+      );
     }
 
     return AnimatedContainer(

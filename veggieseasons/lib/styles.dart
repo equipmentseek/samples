@@ -154,6 +154,4 @@ abstract class Styles {
     fontFamily: CupertinoIcons.iconFont,
     fontPackage: CupertinoIcons.iconFontPackage,
   );
-
-
 }

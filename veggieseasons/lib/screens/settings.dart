@@ -21,7 +21,16 @@ class VeggieTypeSettingsScreen extends StatelessWidget {
     final items = VeggieCategory.values
         .map<Widget>((c) => SettingsItem(
               label: veggieCategoryNames[c],
-              type: SettingsItemType.toggle,
+              child: CupertinoSwitch(
+                value: currentPrefs.contains(c),
+                onChanged: (isOn) {
+                  if (isOn) {
+                    model.addPreferredCategory(c);
+                  } else {
+                    model.removePreferredCategory(c);
+                  }
+                },
+              ),
             ))
         .toList();
 
@@ -57,7 +66,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SliverSafeArea(
               top: false,
-              // This is just a big list of all the items in the settings.
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   <Widget>[
@@ -67,18 +75,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           label: 'Notifications',
                           color: Styles.iconBlue,
                           iconData: Styles.reminderIcon,
-                          type: SettingsItemType.toggle,
+                          child: CupertinoSwitch(
+                            value: false,
+                            onChanged: (isOn) {},
+                          ),
                         ),
                         SettingsItem(
                           label: 'Preferred Produce',
                           color: Styles.iconGold,
                           iconData: Styles.listIcon,
-                          type: SettingsItemType.modal,
-                          hasDetails: true,
                           onPress: () {
-                            Navigator.of(context).push(CupertinoPageRoute(
+                            Navigator.of(context, rootNavigator: true).push(
+                              CupertinoPageRoute(
                                 builder: (context) =>
-                                    VeggieTypeSettingsScreen()));
+                                    VeggieTypeSettingsScreen(),
+                              ),
+                            );
                           },
                         ),
                       ],

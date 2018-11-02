@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:collection/collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/veggie.dart';
 
@@ -10,15 +11,18 @@ class Preferences extends Model {
 
   int get desiredCalories => _desiredCalories;
 
-  List<VeggieCategory> _preferredCategories = <VeggieCategory>[
-    VeggieCategory.gourd,
-    VeggieCategory.stealthFruit,
-  ];
+  Set<VeggieCategory> _preferredCategories = Set<VeggieCategory>();
 
-  List<VeggieCategory> get preferredCategories =>
-      List<VeggieCategory>.from(_preferredCategories);
+  UnmodifiableSetView<VeggieCategory> get preferredCategories =>
+      UnmodifiableSetView<VeggieCategory>(_preferredCategories);
 
-  Future<void> _updateFromStorage() async {}
+  void addPreferredCategory(VeggieCategory category) {
+    _preferredCategories.add(category);
+    notifyListeners();
+  }
 
-  Future<void> _saveToStorage() async {}
+  void removePreferredCategory(VeggieCategory category) {
+    _preferredCategories.remove(category);
+    notifyListeners();
+  }
 }

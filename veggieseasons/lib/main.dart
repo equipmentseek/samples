@@ -20,10 +20,10 @@ void main() {
     ScopedModel<AppState>(
       model: AppState(),
       child: ScopedModel<Preferences>(
-          model: Preferences(),
-          child: CupertinoApp(
-            color: Styles.appBackground,
-            home: HomeScreen(),
+        model: Preferences(),
+        child: CupertinoApp(
+          color: Styles.appBackground,
+          home: HomeScreen(),
         ),
       ),
     ),

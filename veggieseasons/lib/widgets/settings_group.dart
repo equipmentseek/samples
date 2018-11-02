@@ -28,7 +28,7 @@ class SettingsGroup extends StatelessWidget {
           return item;
         } else {
           final leftPadding = item is SettingsItem
-              ? item.iconData == null ? 15.0 : 58.0
+              ? (item.iconData == null ? 15.0 : 58.0)
               : 0.0;
           // Add inner dividers.
           return Stack(
