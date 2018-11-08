@@ -71,6 +71,24 @@ abstract class Styles {
     fontWeight: FontWeight.normal,
   );
 
+  static const cardTitleText = TextStyle(
+    color: Color.fromRGBO(0, 0, 0, 0.8),
+    fontFamily: 'NotoSans',
+    fontSize: 32.0,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const cardSubtitleText = TextStyle(
+    color: Color.fromRGBO(0, 0, 0, 0.8),
+    fontFamily: 'NotoSans',
+    fontSize: 16.0,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+  );
+
+
+
   static const appBackground = Color(0xffd0d0d0);
 
   static const scaffoldBackground = Color(0xfff0f0f0);

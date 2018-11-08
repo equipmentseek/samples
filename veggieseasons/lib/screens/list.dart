@@ -9,7 +9,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
 import 'package:veggieseasons/data/veggie.dart';
 import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/veggie_headline.dart';
+import 'package:veggieseasons/widgets/veggie_card.dart';
 
 class ListScreen extends StatelessWidget {
   List<Widget> _generateVeggieRows(List<Veggie> veggies) {
@@ -18,7 +18,7 @@ class ListScreen extends StatelessWidget {
     for (Veggie veggie in veggies) {
       cards.add(Padding(
         padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-        child: VeggieHeadline(veggie),
+        child: VeggieCard(veggie),
       ));
     }
 

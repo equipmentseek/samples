@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 enum VeggieCategory {
@@ -9,6 +10,8 @@ enum VeggieCategory {
   berry,
   citrus,
   cruciferous,
+  fern,
+  flower,
   fruit,
   fungus,
   gourd,
@@ -18,7 +21,6 @@ enum VeggieCategory {
   root,
   stealthFruit,
   stoneFruit,
-  fern,
   tropical,
   tuber,
   vegetable,
@@ -32,22 +34,23 @@ enum Season {
 }
 
 const Map<VeggieCategory, String> veggieCategoryNames = {
-  VeggieCategory.legume: 'Legume',
-  VeggieCategory.tuber: 'Tuber',
+  VeggieCategory.allium: 'Allium',
+  VeggieCategory.berry: 'Berry',
+  VeggieCategory.citrus: 'Citrus',
   VeggieCategory.cruciferous: 'Cruciferous',
+  VeggieCategory.fern: 'Technically a fern',
+  VeggieCategory.flower: 'Flower',
+  VeggieCategory.fruit: 'Fruit',
+  VeggieCategory.fungus: 'Fungus',
   VeggieCategory.gourd: 'Gourd',
   VeggieCategory.leafy: 'Leafy',
-  VeggieCategory.berry: 'Berry',
-  VeggieCategory.stealthFruit: 'Stealth fruit',
-  VeggieCategory.tropical: 'Tropical',
-  VeggieCategory.fruit: 'Fruit',
+  VeggieCategory.legume: 'Legume',
   VeggieCategory.melon: 'Melon',
-  VeggieCategory.stoneFruit: 'Stone fruit',
-  VeggieCategory.fern: 'Technically a fern',
-  VeggieCategory.citrus: 'Citrus',
   VeggieCategory.root: 'Root vegetable',
-  VeggieCategory.allium: 'Allium',
-  VeggieCategory.fungus: 'Fungus',
+  VeggieCategory.stealthFruit: 'Stealth fruit',
+  VeggieCategory.stoneFruit: 'Stone fruit',
+  VeggieCategory.tropical: 'Tropical',
+  VeggieCategory.tuber: 'Tuber',
   VeggieCategory.vegetable: 'Vegetable',
 };
 
@@ -77,7 +80,7 @@ class Veggie {
 
   /// A color value to use when constructing UI elements to match the image
   /// found at [imageAssetPath].
-  final int accentColor;
+  final Color accentColor;
 
   /// Seasons during which a veggie is harvested.
   final List<Season> seasons;
