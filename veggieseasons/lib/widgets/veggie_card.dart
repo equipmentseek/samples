@@ -15,7 +15,7 @@ class VeggieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context, rootNavigator: true).push(
+      onTap: () => Navigator.of(context).push(
           CupertinoPageRoute(builder: (context) => DetailsScreen(veggie.id))),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),

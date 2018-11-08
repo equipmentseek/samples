@@ -85,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           color: Styles.iconGold,
                           iconData: Styles.listIcon,
                           onPress: () {
-                            Navigator.of(context, rootNavigator: true).push(
+                            Navigator.of(context).push(
                               CupertinoPageRoute(
                                 builder: (context) =>
                                     VeggieTypeSettingsScreen(),
