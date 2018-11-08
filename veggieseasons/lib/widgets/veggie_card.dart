@@ -8,16 +8,15 @@ import 'package:veggieseasons/screens/details.dart';
 import 'package:veggieseasons/styles.dart';
 
 class VeggieCard extends StatelessWidget {
-  final Veggie veggie;
-
   const VeggieCard(this.veggie);
+
+  final Veggie veggie;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context, rootNavigator: true).push(
-          CupertinoPageRoute(
-              builder: (context) => DetailsScreen(veggie.id))),
+          CupertinoPageRoute(builder: (context) => DetailsScreen(veggie.id))),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
@@ -42,7 +41,7 @@ class VeggieCard extends StatelessWidget {
                       ),
                       Text(
                         veggie.shortDescription,
-                        style: Styles.cardSubtitleText,
+                        style: Styles.cardDescriptionText,
                       ),
                     ],
                   ),

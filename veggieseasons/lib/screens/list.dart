@@ -12,6 +12,7 @@ import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/veggie_card.dart';
 
 class ListScreen extends StatelessWidget {
+
   List<Widget> _generateVeggieRows(List<Veggie> veggies) {
     final cards = new List<Widget>();
 

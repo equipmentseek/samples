@@ -72,22 +72,28 @@ abstract class Styles {
   );
 
   static const cardTitleText = TextStyle(
-    color: Color.fromRGBO(0, 0, 0, 0.8),
+    color: Color.fromRGBO(0, 0, 0, 0.9),
     fontFamily: 'NotoSans',
     fontSize: 32.0,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
   );
 
-  static const cardSubtitleText = TextStyle(
-    color: Color.fromRGBO(0, 0, 0, 0.8),
+  static const cardCategoryText = TextStyle(
+    color: Color.fromRGBO(255, 255, 255, 0.9),
     fontFamily: 'NotoSans',
     fontSize: 16.0,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
   );
 
-
+  static const cardDescriptionText = TextStyle(
+    color: Color.fromRGBO(0, 0, 0, 0.9),
+    fontFamily: 'NotoSans',
+    fontSize: 16.0,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+  );
 
   static const appBackground = Color(0xffd0d0d0);
 

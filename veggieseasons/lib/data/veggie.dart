@@ -88,4 +88,6 @@ class Veggie {
   /// Whether or not the veggie has been saved to the user's garden (i.e. marked
   /// as a favorite).
   bool isFavorite;
+
+  String get categoryName => veggieCategoryNames[category];
 }
