@@ -15,13 +15,23 @@ class VeggieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-          CupertinoPageRoute(builder: (context) => DetailsScreen(veggie.id))),
+      onTap: () {
+        Navigator.of(context).push(CupertinoPageRoute(
+          builder: (context) => DetailsScreen(veggie.id),
+          fullscreenDialog: true,
+        ));
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
           children: [
-            Image.asset(veggie.imageAssetPath),
+            Hero(
+              tag: Styles.createHeroTag(veggie),
+              child: Image.asset(
+                veggie.imageAssetPath,
+                fit: BoxFit.cover,
+              ),
+            ),
             Positioned(
               bottom: 0.0,
               left: 0.0,

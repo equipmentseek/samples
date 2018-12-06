@@ -60,7 +60,7 @@ class DetailsScreen extends StatelessWidget {
             color: Styles.buttonIconColor,
           ),
           SizedBox(width: 4.0),
-          Text(isFav ? 'Saved to Garden' : 'Save to Garden'),
+          Text('Save to Garden'),
         ],
       ),
       onPressed: onPressed,
@@ -77,9 +77,12 @@ class DetailsScreen extends StatelessWidget {
           Positioned(
             right: 0.0,
             left: 0.0,
-            child: Image.asset(
-              veggie.imageAssetPath,
-              fit: BoxFit.cover,
+            child: Hero(
+              tag: Styles.createHeroTag(veggie),
+              child: Image.asset(
+                veggie.imageAssetPath,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(

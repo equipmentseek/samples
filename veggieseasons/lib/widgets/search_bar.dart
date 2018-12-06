@@ -34,11 +34,9 @@ class SearchBar extends StatelessWidget {
               color: Styles.searchIconColor,
             ),
             Expanded(
-              child: EditableText(
+              child: CupertinoTextField(
                 controller: controller,
                 focusNode: focusNode,
-                style: Styles.searchText,
-                cursorColor: Styles.searchCursorColor,
               ),
             ),
             GestureDetector(
