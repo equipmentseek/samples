@@ -19,7 +19,7 @@ class VeggieTypeSettingsScreen extends StatelessWidget {
     final currentPrefs = model.preferredCategories;
 
     final items = VeggieCategory.values
-        .map<Widget>((c) => SettingsItem(
+        .map<SettingsItem>((c) => SettingsItem(
               label: veggieCategoryNames[c],
               content: CupertinoSwitch(
                 value: currentPrefs.contains(c),
@@ -37,6 +37,7 @@ class VeggieTypeSettingsScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text('Preferred Produce Types'),
+        previousPageTitle: 'Settings',
       ),
       backgroundColor: Styles.scaffoldBackground,
       child: ListView(
@@ -82,6 +83,7 @@ class CalorieSettingsScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text('Target Calorie Level'),
+        previousPageTitle: 'Settings',
       ),
       backgroundColor: Styles.scaffoldBackground,
       child: ListView(

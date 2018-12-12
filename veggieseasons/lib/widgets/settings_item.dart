@@ -83,19 +83,21 @@ class SettingsItemState extends State<SettingsItem> {
   Widget build(BuildContext context) {
     List<Widget> rowChildren = [];
 
-    rowChildren.add(
-      Padding(
-        padding: const EdgeInsets.only(
-          left: 15.0,
-          bottom: 2.0,
+    if (widget.icon != null) {
+      rowChildren.add(
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 15.0,
+            bottom: 2.0,
+          ),
+          child: SizedBox(
+            height: 29.0,
+            width: 29.0,
+            child: widget.icon,
+          ),
         ),
-        child: SizedBox(
-          height: 29.0,
-          width: 29.0,
-          child: widget.icon,
-        ),
-      ),
-    );
+      );
+    }
 
     Widget titleSection;
 
