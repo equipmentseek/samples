@@ -25,4 +25,9 @@ class Preferences extends Model {
     _preferredCategories.remove(category);
     notifyListeners();
   }
+
+  void setDesiredCalories(int calories) {
+    _desiredCalories = calories;
+    notifyListeners();
+  }
 }

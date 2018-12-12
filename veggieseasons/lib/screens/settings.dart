@@ -15,13 +15,13 @@ import 'package:veggieseasons/widgets/settings_item.dart';
 class VeggieTypeSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final model = ScopedModel.of<Preferences>(context);
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
     final currentPrefs = model.preferredCategories;
 
     final items = VeggieCategory.values
         .map<Widget>((c) => SettingsItem(
               label: veggieCategoryNames[c],
-              child: CupertinoSwitch(
+              content: CupertinoSwitch(
                 value: currentPrefs.contains(c),
                 onChanged: (isOn) {
                   if (isOn) {
@@ -41,21 +41,68 @@ class VeggieTypeSettingsScreen extends StatelessWidget {
       backgroundColor: Styles.scaffoldBackground,
       child: ListView(
         children: [
-          SettingsGroup(items),
+          SettingsGroup(
+            items: items,
+          ),
         ],
       ),
     );
   }
 }
 
-class SettingsScreen extends StatefulWidget {
-  @override
-  _SettingsScreenState createState() => _SettingsScreenState();
-}
+class CalorieSettingsScreen extends StatelessWidget {
+  static const minCalories = 1000;
+  static const maxCalories = 2600;
+  static const calorieStep = 200;
 
-class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+
+    final steps = <SettingsItem>[];
+
+    for (int cals = minCalories; cals < maxCalories; cals += calorieStep) {
+      steps.add(
+        SettingsItem(
+          label: cals.toString(),
+          icon: model.desiredCalories == cals
+              ? SettingsIcon(
+                  icon: Styles.checkIcon,
+                  foregroundColor: CupertinoColors.activeBlue,
+                  backgroundColor: Styles.transparentColor,
+                )
+              : null,
+          onPress: () {
+            model.setDesiredCalories(cals);
+          },
+        ),
+      );
+    }
+
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Target Calorie Level'),
+      ),
+      backgroundColor: Styles.scaffoldBackground,
+      child: ListView(
+        children: [
+          SettingsGroup(
+            items: steps,
+            header: SettingsGroupHeader('Available calorie levels'),
+            footer: SettingsGroupFooter('These are used for serving '
+                'calculations'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+
     return CupertinoPageScaffold(
       child: Container(
         color: Styles.scaffoldBackground,
@@ -70,20 +117,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 delegate: SliverChildListDelegate(
                   <Widget>[
                     SettingsGroup(
-                      <Widget>[
+                      items: [
                         SettingsItem(
-                          label: 'Notifications',
-                          color: Styles.iconBlue,
-                          iconData: Styles.reminderIcon,
-                          child: CupertinoSwitch(
-                            value: false,
-                            onChanged: (isOn) {},
+                          label: 'Target Calorie level',
+                          icon: SettingsIcon(
+                            backgroundColor: Styles.iconBlue,
+                            icon: Styles.calorieIcon, /**/
                           ),
+                          content: Text(model.desiredCalories.toString()),
+                          onPress: () {
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                builder: (context) => CalorieSettingsScreen(),
+                              ),
+                            );
+                          },
                         ),
                         SettingsItem(
                           label: 'Preferred Produce',
-                          color: Styles.iconGold,
-                          iconData: Styles.listIcon,
+                          subtitle: 'Your favorite veggies!',
+                          icon: SettingsIcon(
+                            backgroundColor: Styles.iconGold,
+                            icon: Styles.preferenceIcon,
+                          ),
+                          content: SettingsNavigationIndicator(),
                           onPress: () {
                             Navigator.of(context).push(
                               CupertinoPageRoute(

@@ -7,27 +7,70 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:veggieseasons/styles.dart';
 
-typedef FutureOr<void> PressOperationCallback();
+typedef FutureOr<void> SettingsItemCallback();
+
+@immutable
+class SettingsNavigationIndicator extends StatelessWidget {
+  const SettingsNavigationIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      CupertinoIcons.forward,
+      color: Styles.settingsMediumGray,
+      size: 21.0,
+    );
+  }
+}
+
+@immutable
+class SettingsIcon extends StatelessWidget {
+  const SettingsIcon({
+    @required this.icon,
+    this.foregroundColor = CupertinoColors.white,
+    this.backgroundColor = CupertinoColors.black,
+    Key key,
+  })  : assert(icon != null),
+        super(key: key);
+
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Center(
+        child: Icon(
+          icon,
+          color: foregroundColor,
+          size: 20.0,
+        ),
+      ),
+    );
+  }
+}
 
 class SettingsItem extends StatefulWidget {
   const SettingsItem({
     @required this.label,
-    this.child,
+    this.icon,
+    this.content,
     this.subtitle,
-    this.iconData,
-    this.color,
-    this.iconColor = const Color(0xFFFFFFFF),
     this.onPress,
+    Key key,
   })  : assert(label != null),
-        assert(child != null || onPress != null);
+        super(key: key);
 
   final String label;
+  final Widget icon;
+  final Widget content;
   final String subtitle;
-  final IconData iconData;
-  final Color color;
-  final Color iconColor;
-  final PressOperationCallback onPress;
-  final Widget child;
+  final SettingsItemCallback onPress;
 
   @override
   State<StatefulWidget> createState() => new SettingsItemState();
@@ -39,33 +82,23 @@ class SettingsItemState extends State<SettingsItem> {
   @override
   Widget build(BuildContext context) {
     List<Widget> rowChildren = [];
-    if (widget.iconData != null) {
-      rowChildren.add(
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 15.0,
-            bottom: 2.0,
-          ),
-          child: Container(
-            height: 29.0,
-            width: 29.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: widget.color,
-            ),
-            child: Center(
-              child: Icon(
-                widget.iconData,
-                color: widget.iconColor,
-                size: 20.0,
-              ),
-            ),
-          ),
+
+    rowChildren.add(
+      Padding(
+        padding: const EdgeInsets.only(
+          left: 15.0,
+          bottom: 2.0,
         ),
-      );
-    }
+        child: SizedBox(
+          height: 29.0,
+          width: 29.0,
+          child: widget.icon,
+        ),
+      ),
+    );
 
     Widget titleSection;
+
     if (widget.subtitle == null) {
       titleSection = Padding(
         padding: EdgeInsets.only(top: 1.5),
@@ -75,9 +108,9 @@ class SettingsItemState extends State<SettingsItem> {
       titleSection = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Padding(padding: EdgeInsets.only(top: 8.5)),
+          SizedBox(height: 8.5),
           Text(widget.label),
-          const Padding(padding: EdgeInsets.only(top: 4.0)),
+          SizedBox(height: 4.0),
           Text(
             widget.subtitle,
             style: TextStyle(
@@ -100,25 +133,12 @@ class SettingsItemState extends State<SettingsItem> {
       ),
     );
 
-    if (widget.child != null) {
-      rowChildren.add(
-        Padding(
-          padding: const EdgeInsets.only(right: 11.0),
-          child: widget.child,
-        ),
-      );
-    } else {
-      rowChildren.add(
-        Padding(
-          padding: const EdgeInsets.fromLTRB(2.25, 0.5, 8.5, 0.0),
-          child: Icon(
-            CupertinoIcons.forward,
-            color: Styles.settingsMediumGray,
-            size: 21.0,
-          ),
-        ),
-      );
-    }
+    rowChildren.add(
+      Padding(
+        padding: const EdgeInsets.only(right: 11.0),
+        child: widget.content ?? Container(),
+      ),
+    );
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),

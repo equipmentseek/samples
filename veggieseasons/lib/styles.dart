@@ -170,14 +170,20 @@ abstract class Styles {
 
   static const Color iconGold = Color(0xffdba800);
 
-  static const listIcon = IconData(
-    0xf454,
+  static const preferenceIcon = IconData(
+    0xf443,
     fontFamily: CupertinoIcons.iconFont,
     fontPackage: CupertinoIcons.iconFontPackage,
   );
 
-  static const reminderIcon = IconData(
-    0xf39b,
+  static const calorieIcon = IconData(
+    0xf3bb,
+    fontFamily: CupertinoIcons.iconFont,
+    fontPackage: CupertinoIcons.iconFontPackage,
+  );
+
+  static const checkIcon = IconData(
+    0xf383,
     fontFamily: CupertinoIcons.iconFont,
     fontPackage: CupertinoIcons.iconFontPackage,
   );

@@ -12,9 +12,8 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   intl: ^0.15.7
-  scoped_model: ^0.3.0
+  scoped_model: ^1.0.1
   shared_preferences: ^0.4.3
-  palette_generator: any
 
 dev_dependencies:
   flutter_test:
