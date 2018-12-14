@@ -20,7 +20,8 @@ class ListScreen extends StatelessWidget {
     for (Veggie veggie in veggies) {
       cards.add(Padding(
         padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-        child: VeggieCard(veggie, preferredCategories.contains(veggie.category)),
+        child:
+            VeggieCard(veggie, preferredCategories.contains(veggie.category)),
       ));
     }
 
@@ -32,8 +33,10 @@ class ListScreen extends StatelessWidget {
     return CupertinoTabView(
       builder: (context) {
         String dateString = DateFormat.jms("en_US").format(DateTime.now());
-        final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
-        final prefs = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+        final appState =
+            ScopedModel.of<AppState>(context, rebuildOnChange: true);
+        final prefs =
+            ScopedModel.of<Preferences>(context, rebuildOnChange: true);
 
         final rows = <Widget>[];
 

@@ -13,10 +13,6 @@ class VeggieCard extends StatelessWidget {
   final Veggie veggie;
   final bool isFavoriteCategory;
 
-  List<Widget> _buildIcons() {
-    return <Widget>[];
-  }
-
   List<Widget> _buildStackChildren() {
     final widgets = <Widget>[];
 

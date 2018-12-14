@@ -30,9 +30,7 @@ class SeasonCircle extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: active
-              ? Styles.seasonColors[season]
-              : Styles.transparentColor,
+          color: active ? Styles.seasonColors[season] : Styles.transparentColor,
           borderRadius: BorderRadius.circular(25.0),
           border: Styles.seasonBorder,
         ),
