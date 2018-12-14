@@ -66,8 +66,16 @@ abstract class Styles {
     fontWeight: FontWeight.normal,
   );
 
-  static const seasonText = TextStyle(
+  static const activeSeasonText = TextStyle(
     color: Color.fromRGBO(255, 255, 255, 0.9),
+    fontFamily: 'NotoSans',
+    fontSize: 24.0,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const inactiveSeasonText = TextStyle(
+    color: Color.fromRGBO(80, 80, 80, 0.9),
     fontFamily: 'NotoSans',
     fontSize: 24.0,
     fontStyle: FontStyle.normal,

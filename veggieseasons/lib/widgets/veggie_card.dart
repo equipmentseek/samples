@@ -8,9 +8,55 @@ import 'package:veggieseasons/screens/details.dart';
 import 'package:veggieseasons/styles.dart';
 
 class VeggieCard extends StatelessWidget {
-  const VeggieCard(this.veggie);
+  VeggieCard(this.veggie, this.isFavoriteCategory);
 
   final Veggie veggie;
+  final bool isFavoriteCategory;
+
+  List<Widget> _buildIcons() {
+    return <Widget>[];
+  }
+
+  List<Widget> _buildStackChildren() {
+    final widgets = <Widget>[];
+
+    widgets.add(Hero(
+      tag: Styles.createHeroTag(veggie),
+      child: Image.asset(
+        veggie.imageAssetPath,
+        fit: BoxFit.cover,
+      ),
+    ));
+
+    widgets.add(Positioned(
+      bottom: 0.0,
+      left: 0.0,
+      right: 0.0,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: veggie.accentColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                veggie.name,
+                style: Styles.cardTitleText,
+              ),
+              Text(
+                veggie.shortDescription,
+                style: Styles.cardDescriptionText,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
+
+    return widgets;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,41 +70,7 @@ class VeggieCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
-          children: [
-            Hero(
-              tag: Styles.createHeroTag(veggie),
-              child: Image.asset(
-                veggie.imageAssetPath,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: veggie.accentColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        veggie.name,
-                        style: Styles.cardTitleText,
-                      ),
-                      Text(
-                        veggie.shortDescription,
-                        style: Styles.cardDescriptionText,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
+          children: _buildStackChildren(),
         ),
       ),
     );

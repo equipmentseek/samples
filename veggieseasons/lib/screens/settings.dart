@@ -12,7 +12,7 @@ import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/settings_group.dart';
 import 'package:veggieseasons/widgets/settings_item.dart';
 
-class VeggieTypeSettingsScreen extends StatelessWidget {
+class VeggieCategorySettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
@@ -36,7 +36,7 @@ class VeggieTypeSettingsScreen extends StatelessWidget {
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('Preferred Produce Types'),
+        middle: Text('Preferred Categories'),
         previousPageTitle: 'Settings',
       ),
       backgroundColor: Styles.scaffoldBackground,
@@ -136,8 +136,8 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                         SettingsItem(
-                          label: 'Preferred Produce',
-                          subtitle: 'Your favorite veggies!',
+                          label: 'Preferred Catgories',
+                          subtitle: 'What types of veggies you prefer!',
                           icon: SettingsIcon(
                             backgroundColor: Styles.iconGold,
                             icon: Styles.preferenceIcon,
@@ -147,7 +147,7 @@ class SettingsScreen extends StatelessWidget {
                             Navigator.of(context).push(
                               CupertinoPageRoute(
                                 builder: (context) =>
-                                    VeggieTypeSettingsScreen(),
+                                    VeggieCategorySettingsScreen(),
                               ),
                             );
                           },
